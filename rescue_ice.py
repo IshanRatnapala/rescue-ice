@@ -22,7 +22,6 @@ def getProducts(soup):
     return links
 
 def getAkki(url):
-    akki = {}
     response = requests.get(url)
     soup = bs4.BeautifulSoup(response.text, 'html.parser')
     productName = soup.select_one('.product-main-info .product-name h1').get_text()
