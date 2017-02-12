@@ -8,9 +8,9 @@ logging.basicConfig(level=logging.INFO)
 
 
 def getNextPage(listingUrl):
-    logging.info(('Going to page %s') % (listingUrl.split('=')[-1]))
-    response = requests.get(listingUrl);
-    soup = bs4.BeautifulSoup(response.text, 'html.parser');
+    logging.info('Going to page %s' % (listingUrl.split('=')[-1]))
+    response = requests.get(listingUrl)
+    soup = bs4.BeautifulSoup(response.text, 'html.parser')
     return {
         'soup': soup,
         'nextPage': soup.select_one('.pages .current + li')
@@ -39,12 +39,12 @@ def getAkki(url):
             raise
 
     for i, akki in enumerate(soup.select('.main-image-set img')):
-        logging.info(('Saving image %s of %s') % (i + 1, len(soup.select('.main-image-set img'))))
+        logging.info('Saving image %s of %s' % (i + 1, len(soup.select('.main-image-set img'))))
         urllib.urlretrieve(akki['data-zoom-image'], '%s/%s.jpg' % (productUniqueName, i))
 
 
 def rescueIce():
-    listingUrl = 'http://www.icedesign.com.au/clothing';
+    listingUrl = 'http://www.icedesign.com.au/clothing'
 
     def rescueAkkis(url):
         pageData = getNextPage(url)
