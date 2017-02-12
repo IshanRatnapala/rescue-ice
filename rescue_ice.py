@@ -54,7 +54,7 @@ def rescueIce():
         try:
             rescueAkkis(pageData['nextPage'].a['href'])
         except AttributeError:
-            print "Thats all folks...!"
+            logging.info("Thats all folks...!")
 
     rescueAkkis(listingUrl)
 
